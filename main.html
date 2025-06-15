@@ -18,20 +18,25 @@
       min-height: 100vh;
       background-color: #f0f0f0;
       font-family: 'Noto Sans KR', sans-serif;
-      font-size: 5vw;
       color: #555;
+      overflow: hidden;
     }
+
+    /* Container: responsive across devices */
     .chat-container {
       display: flex;
       flex-direction: column;
-      width: 90vw;
-      max-width: 768px;
+      /* 최대 너비와 높이를 제한하고 비율 유지 */
+      width: min(90vw, 768px);
       aspect-ratio: 4 / 3;
+      max-height: 90vh;
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       overflow: hidden;
     }
+
+    /* Header */
     .header {
       display: flex;
       align-items: center;
@@ -43,6 +48,8 @@
     }
     .header .material-icons { cursor: pointer; font-size: 24px; color: #333; }
     .header .title { font-size: 18px; font-weight: 500; }
+
+    /* Chat area */
     .chat-area {
       flex: 1;
       padding: 16px;
@@ -73,6 +80,8 @@
       background: #e5e5ea;
       color: #000;
     }
+
+    /* Footer */
     .footer {
       display: flex;
       align-items: center;
@@ -89,6 +98,15 @@
       outline: none;
       font-size: 14px;
     }
+
+    /* Scrollbar style for chat area (optional) */
+    .chat-area::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-area::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.2);
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
@@ -99,7 +117,8 @@
       <span class="title">Eau de Pico</span>
       <span class="material-icons">videocam</span>
     </div>
-    <!-- Chat Area -->
+
+    <!-- Chat area -->
     <div class="chat-area">
       <div class="timestamp">7월 18일 (금) 03:18</div>
       <div class="message sent">뭐해?? 진짜 오랜만이다</div>
@@ -107,10 +126,11 @@
       <div class="message received">그러게 진짜 오랜만이네</div>
       <div class="message received">나 그냥 폰하지!</div>
     </div>
+
     <!-- Footer -->
     <div class="footer">
       <span class="material-icons">add</span>
-      <input type="text" placeholder="아 혹시 저번에 너네 집에서 <노래> 들렸을 때 났던 향 기억나?">
+      <input type="text" placeholder="아 혹시 저번에 너네 집에서 &lt;노래&gt; 들렸을 때 났던 향 기억나?">
       <span class="material-icons">mic</span>
     </div>
   </div>
