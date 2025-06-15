@@ -1,22 +1,24 @@
 body {
     margin: 0;
     font-family: 'Nanum Gothic', sans-serif;
-    background-color: #f5f5f5;
+    background-color: #ffffff; /* White background for the entire page */
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ensure it takes full viewport height for centering */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    overflow: hidden; /* Prevent scrolling if content overflows, in this context */
 }
 
 .container {
     width: 100%;
-    max-width: 375px; /* Typical mobile width for ratio */
-    height: 812px; /* Typical mobile height for ratio (iPhone X/XS/11 Pro) */
+    max-width: 375px; /* Keeps the mobile-like ratio */
+    height: 100%; /* Make container fill 100% of body height, adapting to 100vh */
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Prevent content from spilling out */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Removed box shadow for iMessage look */
+    overflow: hidden; 
 }
 
 .header {
@@ -24,22 +26,22 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    background-color: #fff;
+    background-color: #f9f9f9; /* Slightly off-white for header */
     border-bottom: 1px solid #eee;
-    color: #4CAF50; /* KakaoTalk green for icons */
+    color: #007aff; /* iOS blue for icons */
 }
 
 .header .back-icon,
 .header .camera-icon {
     font-size: 24px;
-    color: #007aff; /* Blue like iOS */
+    color: #007aff; /* iOS blue */
 }
 
 .profile-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-grow: 1; /* Allows it to take available space */
+    flex-grow: 1; 
 }
 
 .profile-pic {
@@ -65,7 +67,7 @@ body {
     flex-grow: 1;
     padding: 10px;
     overflow-y: auto;
-    background-color: #abc1d1; /* KakaoTalk chat background */
+    background-color: #ffffff; /* White chat background for iMessage look */
 }
 
 .message-date-time {
@@ -98,13 +100,13 @@ body {
 }
 
 .message-bubble.blue {
-    background-color: #fee500; /* KakaoTalk yellow */
-    color: #333;
+    background-color: #007aff; /* iMessage blue */
+    color: #fff;
     border-bottom-right-radius: 2px; /* For the "tail" effect */
 }
 
 .message-bubble.gray {
-    background-color: #ffffff;
+    background-color: #e5e5ea; /* iMessage light gray */
     color: #333;
     border-bottom-left-radius: 2px; /* For the "tail" effect */
 }
@@ -114,43 +116,56 @@ body {
     display: flex;
     align-items: center;
     padding: 8px 10px;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Slightly off-white for bottom bar */
     border-top: 1px solid #eee;
 }
 
-.plus-icon-container,
-.mic-icon-container {
+.plus-icon-container {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #ccc;
+    background-color: #e5e5ea; /* Light gray for iMessage plus button background */
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 18px;
-    color: #fff;
-    margin: 0 5px;
+    color: #8e8e93; /* Darker gray for plus icon */
+    margin-right: 8px; /* Spacing */
+}
+
+.mic-icon-container {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e5e5ea; /* Light gray for iMessage mic button background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #8e8e93; /* Darker gray for mic icon */
+    margin-left: 8px; /* Spacing */
 }
 
 .input-bar {
     flex-grow: 1;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0; /* Slightly darker gray for input field */
     border-radius: 20px;
     padding: 8px 15px;
     margin: 0 5px;
     font-size: 15px;
     color: #333;
-    white-space: pre-wrap; /* Allows text to wrap */
-    word-break: break-word; /* Breaks long words */
-    min-height: 30px; /* Minimum height for input area */
+    white-space: nowrap; /* Forces text onto a single line */
+    overflow: hidden; /* Hides overflowing text */
+    text-overflow: ellipsis; /* Adds "..." for overflow */
+    min-height: 30px; 
     display: flex;
     align-items: center;
 }
 
 .editable-text {
-    display: inline-block; /* Allows contenteditable to behave like a block for styling */
-    min-width: 30px; /* Ensures a visible area for editing */
-    border-bottom: 1px dashed #999; /* Visual cue for editable part */
-    padding-bottom: 2px;
-    margin: 0 2px;
+    display: inline; /* Changed to inline to flow naturally */
+    border-bottom: none; /* Removed dashed border */
+    padding-bottom: 0;
+    margin: 0;
+    color: #333; /* Ensure text color is consistent */
 }
