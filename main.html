@@ -3,206 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>채팅 화면</title>
+    <title>메인 화면</title>
     <style>
-        /* 전체 화면 꽉 차게 */
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            height: 100vh;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 5vw;
+            color: #555;
+            margin: 0;
         }
 
-        /* 채팅 창의 크기를 화면에 맞게 설정 */
         .chat-container {
-            width: 100%;
-            max-width: 600px; /* 최대 너비 600px */
-            height: 90%; /* 화면에서 90% 차지 */
-            background-color: white;
+            width: 90%;
+            max-width: 600px;
+            background: white;
             border-radius: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
 
-        /* 상단 헤더 */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            margin-bottom: 20px;
         }
-        .left-icon, .right-icon {
-            font-size: 24px;
-            border: 2px solid #00aaff;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-            cursor: pointer;
+
+        .header .back-button, .header .camera-icon {
+            color: #7ec8f1;
+            font-size: 2.5rem;
         }
-        .left-icon {
-            transform: rotate(180deg);
-        }
-        .right-icon {
-            transform: rotate(0deg);
-        }
-        .profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+
+        .header .profile {
+            text-align: center;
             flex-grow: 1;
         }
-        .profile img {
+
+        .header .profile img {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
             margin-bottom: 5px;
         }
-        .username {
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
+
+        .header .profile p {
+            font-size: 1.5rem;
+            color: #555;
         }
 
-        /* 날짜와 시간 */
-        .date-time {
-            font-size: 12px;
-            color: #999;
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        /* 메시지 박스 */
-        .message {
+        .message-area {
+            flex-grow: 1;
             display: flex;
-            margin-bottom: 15px;
-        }
-        .message.left {
+            flex-direction: column;
             justify-content: flex-start;
         }
-        .message.right {
-            justify-content: flex-end;
-        }
-        .message-text {
-            padding: 12px;
-            border-radius: 20px;
-            font-size: 16px;
-            word-wrap: break-word;
-            max-width: 80%;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-        .left .message-text {
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        .right .message-text {
-            background-color: #007bff;
-            color: white;
+
+        .message-area .message {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
         }
 
-        /* 입력 바 */
+        .message-area .message .message-time {
+            font-size: 1.2rem;
+            color: #888;
+            text-align: center;
+            flex-grow: 1;
+            margin-bottom: 5px;
+        }
+
+        .message-area .message .bubble {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .message-area .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message-area .message.sent .bubble {
+            background-color: #7ec8f1;
+            color: white;
+            border-radius: 20px 20px 0 20px;
+        }
+
+        .message-area .message.received .bubble {
+            background-color: #e0e0e0;
+            color: black;
+            border-radius: 20px 20px 20px 0;
+        }
+
         .input-bar {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-top: 20px;
-            padding: 10px 0;
-            border-top: 1px solid #ddd;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .input-bar .plus-icon {
-            font-size: 24px;
-            color: #999;
-            cursor: pointer;
+
+        .input-bar .icon {
             background-color: #e0e0e0;
             border-radius: 50%;
             padding: 10px;
+            margin-right: 10px;
+            font-size: 2rem;
+            color: #555;
+        }
+
+        .input-bar input {
+            flex-grow: 1;
             border: none;
-        }
-        .input-field {
-            width: 80%;
+            font-size: 1.5rem;
             padding: 10px;
-            border-radius: 20px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            color: #333;
+            background-color: #f0f0f0;
+            border-radius: 30px;
+            color: #555;
         }
-        .input-field::placeholder {
-            color: #aaa;
-        }
-        .mic-icon {
-            font-size: 24px;
-            color: #999;
-            cursor: pointer;
-            border: 2px solid #00aaff;
-            padding: 10px;
-            border-radius: 50%;
+
+        .input-bar input:focus {
+            outline: none;
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
-        <!-- 상단 헤더 -->
+        <!-- Header -->
         <div class="header">
-            <span class="left-icon">←</span>
+            <div class="back-button">&lt;</div>
             <div class="profile">
-                <img src="https://via.placeholder.com/40" alt="프로필 이미지">
-                <span class="username">Eau de Pico</span>
+                <img src="profile.jpg" alt="Profile Image">
+                <p>Eau de Pico</p>
             </div>
-            <span class="right-icon">🎥</span>
+            <div class="camera-icon">🎥</div>
         </div>
 
-        <!-- 날짜/시간 -->
-        <div class="date-time">7월 18일 (금) 03:18</div>
-
-        <!-- 파란색 메시지 -->
-        <div class="message right">
-            <div class="message-text">
-                뭐해? 진짜 오랜만이다
+        <!-- Message Area -->
+        <div class="message-area">
+            <div class="message received">
+                <div class="message-time">7월 18일 (금) 03:18</div>
+                <div class="bubble">뭐해? 진짜 오랜만이다</div>
             </div>
-        </div>
-
-        <!-- 날짜/시간 -->
-        <div class="date-time">7월 18일 (금) 13:18</div>
-
-        <!-- 회색 메시지들 -->
-        <div class="message left">
-            <div class="message-text">
-                그러게 진짜 오랜만이네
+            <div class="message sent">
+                <div class="message-time">7월 18일 (금) 13:18</div>
+                <div class="bubble">그러게 진짜 오랜만이네</div>
             </div>
-        </div>
-        <div class="message left">
-            <div class="message-text">
-                나 그냥 폰하지!
+            <div class="message sent">
+                <div class="bubble">나 그냥 폰하지!</div> <!-- 날짜와 시간 제거된 부분 -->
             </div>
         </div>
 
-        <!-- 입력 영역 -->
+        <!-- Input Bar -->
         <div class="input-bar">
-            <button class="plus-icon">+</button>
-            <input class="input-field" type="text" placeholder="아 혹시 저번에 너네 집에서 <노래> 들었을 때 났던 향 기억나?" id="input-message">
-            <button class="mic-icon">🎤</button>
+            <div class="icon">+</div>
+            <input type="text" placeholder="아 혹시 저번에 너네 집에서 <노래> 들었을 때 났던 향 기억나?">
+            <div class="icon">🎤</div>
         </div>
     </div>
-
-    <script>
-        // 입력 필드에서 <노래> 부분을 클릭하면 수정할 수 있도록 설정
-        const inputMessage = document.getElementById("input-message");
-        inputMessage.addEventListener("focus", function() {
-            if (inputMessage.value === "아 혹시 저번에 너네 집에서 <노래> 들었을 때 났던 향 기억나?") {
-                inputMessage.value = " ";
-            }
-        });
-    </script>
 </body>
 </html>
