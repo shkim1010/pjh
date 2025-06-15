@@ -1,45 +1,61 @@
+/* 잠금 화면 CSS에서 가져온 body 스타일 적용 */
 body {
     margin: 0;
-    font-family: 'Nanum Gothic', sans-serif;
-    background-color: #ffffff; /* 전체 배경을 흰색으로 설정 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* 뷰포트 높이에 꽉 차게 */
-    width: 100vw; /* 뷰포트 너비에 꽉 차게 */
-    overflow: hidden; /* 스크롤바 방지 */
+    display: flex; /* 컨테이너를 중앙 정렬하기 위해 유지 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    min-height: 100vh; /* 뷰포트 높이 전체를 사용 */
+    background-color: transparent; /* 배경색 제거 (컨테이너 이미지로 대체됨) */
+    font-family: 'Nanum Gothic', sans-serif; /* iMessage에서 사용하던 폰트 유지 */
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-width: 320px;
+    overflow-x: hidden;
+    /* 잠금 화면의 폰트 @import는 main.css 파일의 맨 위로 옮겨야 합니다. */
+    /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap'); */
+    /* @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@800&display=swap'); */
 }
 
+/* 잠금 화면 CSS에서 가져온 container 스타일 적용 */
 .container {
-    /* 이 부분이 가로 비율로 변경된 부분입니다. */
-    width: 100%; /* 너비를 100%로 설정하여 가로로 늘림 */
-    max-width: 812px; /* 이전에 height였던 812px를 max-width로 설정 */
-    height: 100%; /* 높이를 100%로 설정하여 세로로 늘림 */
-    max-height: 375px; /* 이전에 max-width였던 375px를 max-height로 설정 */
+    width: 100vw; /* 뷰포트 너비 전체를 차지 */
+    height: 100vh; /* 뷰포트 높이 전체를 차지 */
     
-    background-color: #fff; /* 컨테이너 배경도 흰색 */
+    /* 기존 background-color를 이미지로 대체 */
+    background-image: url("../images/IMG_1336.jpg");  /* 여기에 이미지 파일 경로를 넣어주세요. */
+    background-size: cover; /* 이미지가 화면을 꽉 채우도록 조절 (비율 유지) */
+    background-position: center; /* 이미지를 중앙에 배치 */
+    background-repeat: no-repeat; /* 이미지 반복 없음 */
+    
+    border-radius: 0; /* 화면 전체를 덮으므로 모서리 둥글게 제거 */
+    box-shadow: none; /* 화면 전체를 덮으므로 그림자 제거 */
+    
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* 은은한 그림자로 실제 기기 느낌 */
-    overflow: hidden; /* 내부 요소 넘침 방지 */
+    /* align-items: center;  iMessage 레이아웃을 위해 이 부분은 제거하거나 신중하게 조정 */
+    padding: 0; /* iMessage 레이아웃을 위해 패딩 제거 */
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; /* 컨테이너를 벗어나는 내용 숨김 */
 }
 
-/* 1. 상단 헤더 */
+/* 1. 상단 헤더 (기존 iMessage 스타일 유지) */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    background-color: #f9f9f9; /* 살짝 오프화이트 배경 */
-    border-bottom: 1px solid #eee;
+    background-color: rgba(249, 249, 249, 0.8); /* 배경 이미지를 위해 투명도 추가 */
+    border-bottom: 1px solid rgba(238, 238, 238, 0.8); /* 배경 이미지를 위해 투명도 추가 */
+    color: #007aff; 
 }
 
 .header-left,
 .header-right {
-    /* flex-basis는 컨텐츠에 따라 유동적으로 크기가 조절될 수 있도록 제거 */
     display: flex;
     align-items: center;
-    padding: 0 5px; /* 아이콘과 가장자리 간격 */
+    padding: 0 5px;
 }
 
 .header-left {
@@ -53,28 +69,28 @@ body {
 .header-left .fa-chevron-left,
 .header-right .fa-video {
     font-size: 24px;
-    color: #007aff; /* 하늘색 아이콘 (iOS Blue) */
+    color: #007aff;
 }
 
 .header-center {
-    flex-grow: 1; /* 남은 공간을 모두 차지하여 가운데 정렬 유지 */
+    flex-grow: 1;
     display: flex;
-    flex-direction: column; /* 프로필 사진 위에, 이름 아래 */
-    align-items: center; /* 가운데 정렬 */
-    justify-content: center; /* 세로 가운데 정렬 */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile-pic {
-    width: 35px; /* 프로필 사진 크기 */
+    width: 35px;
     height: 35px;
-    background-color: #ccc; /* 기본 회색 배경 */
-    border-radius: 50%; /* 원형 */
+    background-color: #ccc;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px; /* 사람 아이콘 크기 */
+    font-size: 18px;
     color: #fff;
-    margin-bottom: 3px; /* 이름과의 간격 */
+    margin-bottom: 3px;
 }
 
 .username {
@@ -83,19 +99,21 @@ body {
     color: #333;
 }
 
-/* 2. 메시지 영역 */
+/* 2. 메시지 영역 (기존 iMessage 스타일 유지) */
 .chat-area {
-    flex-grow: 1; /* 남은 공간 모두 차지 */
+    flex-grow: 1;
     padding: 10px;
-    overflow-y: auto; /* 내용이 많으면 스크롤 가능 */
-    background-color: #ffffff; /* 채팅 배경 흰색 */
+    overflow-y: auto;
+    background-color: transparent; /* 배경 이미지 위에 콘텐츠가 보이도록 투명 처리 */
 }
 
 .message-date-time {
     text-align: center;
     font-size: 12px;
-    color: #8e8e93; /* 회색 날짜/시간 */
+    color: #8e8e93;
     margin: 10px 0;
+    /* 배경 이미지 위에 텍스트가 잘 보이도록 그림자 추가 가능 */
+    text-shadow: 0 0 3px rgba(255,255,255,0.7); 
 }
 
 .message-row {
@@ -113,18 +131,17 @@ body {
 
 .message-bubble {
     padding: 8px 12px;
-    border-radius: 18px; /* 둥근 말풍선 */
-    max-width: 70%; /* 말풍선 최대 너비 */
+    border-radius: 18px;
+    max-width: 70%;
     font-size: 15px;
     line-height: 1.4;
-    word-wrap: break-word; /* 긴 단어 줄 바꿈 */
-    box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+    word-wrap: break-word;
+    box-sizing: border-box;
 }
 
 .message-bubble.blue {
-    background-color: #007aff; /* 파란색 말풍선 (iMessage Blue) */
+    background-color: #007aff;
     color: #fff;
-    /* 말풍선 꼬리 부분을 위한 미세 조정 */
     border-top-right-radius: 18px;
     border-bottom-right-radius: 5px; 
     border-top-left-radius: 18px;
@@ -132,9 +149,8 @@ body {
 }
 
 .message-bubble.gray {
-    background-color: #e5e5ea; /* 회색 말풍선 (iMessage Light Gray) */
+    background-color: #e5e5ea;
     color: #333;
-    /* 말풍선 꼬리 부분을 위한 미세 조정 */
     border-top-left-radius: 18px;
     border-bottom-left-radius: 5px; 
     border-top-right-radius: 18px;
@@ -142,50 +158,53 @@ body {
 }
 
 
-/* 3. 하단 바 */
+/* 3. 하단 바 (기존 iMessage 스타일 유지) */
 .bottom-bar {
     display: flex;
-    align-items: flex-end; /* 입력창 높이에 맞춰 하단 정렬 */
+    align-items: flex-end;
     padding: 8px 10px;
-    background-color: #f9f9f9; /* 살짝 오프화이트 배경 */
-    border-top: 1px solid #eee;
+    background-color: rgba(249, 249, 249, 0.8); /* 배경 이미지를 위해 투명도 추가 */
+    border-top: 1px solid rgba(238, 238, 238, 0.8); /* 배경 이미지를 위해 투명도 추가 */
 }
 
-/* + 아이콘과 마이크 아이콘 스타일 */
 .plus-icon-container,
 .mic-icon-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px; /* 아이콘 크기 */
-    color: #8e8e93; /* 회색 선 아이콘 색상 */
-    width: 30px; /* 아이콘을 위한 공간 */
-    height: 30px; /* 아이콘을 위한 공간 */
+    font-size: 24px;
+    color: #8e8e93;
+    width: 30px;
+    height: 30px;
 }
 
 .input-bar {
-    flex-grow: 1; /* 남은 공간 모두 차지 */
-    background-color: #f0f0f0; /* 회색 입력 필드 배경 */
+    flex-grow: 1;
+    background-color: #f0f0f0;
     border-radius: 20px;
     padding: 8px 15px;
-    margin: 0 8px; /* 아이콘과의 간격 */
+    margin: 0 8px;
     font-size: 15px;
     color: #333;
-    white-space: nowrap; /* 텍스트를 한 줄로 강제 */
-    overflow: hidden; /* 넘치는 텍스트 숨김 */
-    text-overflow: ellipsis; /* ...으로 넘침 표시 */
-    min-height: 30px; /* 최소 높이 */
-    display: flex; /* 내부 요소 (editable-text) 정렬을 위해 flex 사용 */
-    align-items: center; /* 세로 가운데 정렬 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .editable-text {
-    display: inline; /* 자연스러운 흐름 유지 */
-    border-bottom: none; /* 밑줄 제거 */
+    display: inline;
+    border-bottom: none;
     padding-bottom: 0;
     margin: 0;
     color: #333;
-    /* contenteditable 요소의 기본 스타일 초기화 */
-    outline: none; /* 포커스 시 아웃라인 제거 */
-    min-width: 20px; /* 편집 가능한 영역의 최소 너비 확보 */
+    outline: none;
+    min-width: 20px;
 }
+
+/* 미디어 쿼리는 이 iMessage 채팅 화면에서는 적용되지 않습니다. 
+   전체 화면(100vw, 100vh)을 채우고, 
+   .container의 max-width와 max-height로 모바일/태블릿 비율을 유지하기 때문입니다.
+   만약 특정 Breakpoint에서 내부 요소의 폰트 사이즈 등을 조절하고 싶다면 추가해야 합니다. */
