@@ -1,79 +1,95 @@
 body {
     margin: 0;
     font-family: 'Nanum Gothic', sans-serif;
-    background-color: #ffffff; /* White background for the entire page */
+    background-color: #ffffff; /* 전체 배경을 흰색으로 설정 */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-    overflow: hidden; /* Prevent scrolling if content overflows, in this context */
+    height: 100vh; /* 뷰포트 높이에 꽉 차게 */
+    width: 100vw; /* 뷰포트 너비에 꽉 차게 */
+    overflow: hidden; /* 스크롤바 방지 */
 }
 
 .container {
     width: 100%;
-    max-width: 375px; /* Keeps the mobile-like ratio */
-    height: 100%; /* Make container fill 100% of body height, adapting to 100vh */
-    background-color: #fff;
+    max-width: 375px; /* 모바일 화면 비율 유지 (iPhone X/XS/11 Pro 기준) */
+    height: 100%; /* body의 100% 높이 차지 */
+    background-color: #fff; /* 컨테이너 배경도 흰색 */
     display: flex;
     flex-direction: column;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Removed box shadow for iMessage look */
-    overflow: hidden; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* 은은한 그림자로 실제 기기 느낌 */
+    overflow: hidden; /* 내부 요소 넘침 방지 */
 }
 
+/* 1. 상단 헤더 */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    background-color: #f9f9f9; /* Slightly off-white for header */
+    background-color: #f9f9f9; /* 살짝 오프화이트 배경 */
     border-bottom: 1px solid #eee;
-    color: #007aff; /* iOS blue for icons */
 }
 
-.header .back-icon,
-.header .camera-icon {
-    font-size: 24px;
-    color: #007aff; /* iOS blue */
-}
-
-.profile-info {
+.header-left,
+.header-right {
+    flex-basis: 25%; /* 좌우 아이콘 공간 */
     display: flex;
-    flex-direction: column;
     align-items: center;
-    flex-grow: 1; 
+}
+
+.header-left {
+    justify-content: flex-start;
+}
+
+.header-right {
+    justify-content: flex-end;
+}
+
+.header-left .fa-chevron-left,
+.header-right .fa-video {
+    font-size: 24px;
+    color: #007aff; /* 하늘색 아이콘 (iOS Blue) */
+}
+
+.header-center {
+    flex-basis: 50%; /* 가운데 프로필 공간 */
+    display: flex;
+    flex-direction: column; /* 프로필 사진 위에, 이름 아래 */
+    align-items: center; /* 가운데 정렬 */
 }
 
 .profile-pic {
-    width: 40px;
-    height: 40px;
-    background-color: #ccc;
-    border-radius: 50%;
+    width: 35px; /* 프로필 사진 크기 */
+    height: 35px;
+    background-color: #ccc; /* 기본 회색 배경 */
+    border-radius: 50%; /* 원형 */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 18px; /* 사람 아이콘 크기 */
     color: #fff;
-    margin-bottom: 5px;
+    margin-bottom: 3px; /* 이름과의 간격 */
 }
 
 .username {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     color: #333;
 }
 
+/* 2. 메시지 영역 */
 .chat-area {
-    flex-grow: 1;
+    flex-grow: 1; /* 남은 공간 모두 차지 */
     padding: 10px;
-    overflow-y: auto;
-    background-color: #ffffff; /* White chat background for iMessage look */
+    overflow-y: auto; /* 내용이 많으면 스크롤 가능 */
+    background-color: #ffffff; /* 채팅 배경 흰색 */
 }
 
 .message-date-time {
     text-align: center;
     font-size: 12px;
-    color: #666;
+    color: #8e8e93; /* 회색 날짜/시간 */
     margin: 10px 0;
 }
 
@@ -92,80 +108,83 @@ body {
 
 .message-bubble {
     padding: 8px 12px;
-    border-radius: 18px;
-    max-width: 70%;
+    border-radius: 18px; /* 둥근 말풍선 */
+    max-width: 70%; /* 말풍선 최대 너비 */
     font-size: 15px;
     line-height: 1.4;
-    word-wrap: break-word;
+    word-wrap: break-word; /* 긴 단어 줄 바꿈 */
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
 }
 
 .message-bubble.blue {
-    background-color: #007aff; /* iMessage blue */
+    background-color: #007aff; /* 파란색 말풍선 (iMessage Blue) */
     color: #fff;
-    border-bottom-right-radius: 2px; /* For the "tail" effect */
+    border-bottom-right-radius: 5px; /* 사진과 유사한 꼬리 부분 */
 }
 
 .message-bubble.gray {
-    background-color: #e5e5ea; /* iMessage light gray */
+    background-color: #e5e5ea; /* 회색 말풍선 (iMessage Light Gray) */
     color: #333;
-    border-bottom-left-radius: 2px; /* For the "tail" effect */
+    border-bottom-left-radius: 5px; /* 사진과 유사한 꼬리 부분 */
 }
 
 
+/* 3. 하단 바 */
 .bottom-bar {
     display: flex;
-    align-items: center;
+    align-items: flex-end; /* 입력창 높이에 맞춰 하단 정렬 */
     padding: 8px 10px;
-    background-color: #f9f9f9; /* Slightly off-white for bottom bar */
+    background-color: #f9f9f9; /* 살짝 오프화이트 배경 */
     border-top: 1px solid #eee;
 }
 
-.plus-icon-container {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #e5e5ea; /* Light gray for iMessage plus button background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    color: #8e8e93; /* Darker gray for plus icon */
-    margin-right: 8px; /* Spacing */
-}
-
+.plus-icon-container,
 .mic-icon-container {
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    background-color: #e5e5ea; /* Light gray for iMessage mic button background */
+    /* border-radius: 50%; 이 부분은 사진의 아이콘 스타일을 위해 제거 */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
-    color: #8e8e93; /* Darker gray for mic icon */
-    margin-left: 8px; /* Spacing */
+    font-size: 24px; /* 아이콘 크기 */
+    color: #8e8e93; /* 회색 선 아이콘 색상 */
+    margin: 0 5px;
+    /* 배경은 input-bar와 비슷하게 처리 */
+}
+
+/* + 아이콘의 배경은 사진처럼 원형이 아니므로, Font Awesome의 plus-circle 사용 */
+.plus-icon-container .fa-plus-circle {
+    color: #8e8e93; /* 회색 */
+    font-size: 24px;
+}
+
+.mic-icon-container .fa-microphone {
+    color: #8e8e93; /* 회색 */
+    font-size: 24px;
 }
 
 .input-bar {
-    flex-grow: 1;
-    background-color: #f0f0f0; /* Slightly darker gray for input field */
+    flex-grow: 1; /* 남은 공간 모두 차지 */
+    background-color: #f0f0f0; /* 회색 입력 필드 배경 */
     border-radius: 20px;
     padding: 8px 15px;
     margin: 0 5px;
     font-size: 15px;
     color: #333;
-    white-space: nowrap; /* Forces text onto a single line */
-    overflow: hidden; /* Hides overflowing text */
-    text-overflow: ellipsis; /* Adds "..." for overflow */
-    min-height: 30px; 
-    display: flex;
-    align-items: center;
+    white-space: nowrap; /* 텍스트를 한 줄로 강제 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis; /* ...으로 넘침 표시 */
+    min-height: 30px; /* 최소 높이 */
+    display: flex; /* 내부 요소 (editable-text) 정렬을 위해 flex 사용 */
+    align-items: center; /* 세로 가운데 정렬 */
 }
 
 .editable-text {
-    display: inline; /* Changed to inline to flow naturally */
-    border-bottom: none; /* Removed dashed border */
+    display: inline; /* 자연스러운 흐름 유지 */
+    border-bottom: none; /* 밑줄 제거 */
     padding-bottom: 0;
     margin: 0;
-    color: #333; /* Ensure text color is consistent */
+    color: #333;
+    /* contenteditable 요소의 기본 스타일 초기화 */
+    outline: none; /* 포커스 시 아웃라인 제거 */
 }
