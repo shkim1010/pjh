@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인 화면</title>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -15,9 +17,99 @@
             font-size: 5vw;
             color: #555;
         }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            width: 90vw;
+            height: 90vh;
+            max-width: 450px;
+            max-height: 800px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4vw;
+            height: 8vh;
+            border-bottom: 1px solid #ddd;
+            background: #fff;
+        }
+        .header .material-icons { font-size: 6vw; color: #333; }
+        .header .title { font-size: 5vw; font-weight: 500; }
+        .chat-area {
+            flex: 1;
+            padding: 2vw;
+            overflow-y: auto;
+            background: #f5f5f5;
+        }
+        .timestamp {
+            text-align: center;
+            margin: 2vw 0;
+            font-size: 3vw;
+            color: #999;
+        }
+        .message {
+            max-width: 70%;
+            padding: 2vw;
+            border-radius: 4vw;
+            margin: 2vw 0;
+            word-wrap: break-word;
+            font-size: 4vw;
+        }
+        .message.sent {
+            margin-left: auto;
+            background: #0084ff;
+            color: #fff;
+        }
+        .message.received {
+            margin-right: auto;
+            background: #e5e5ea;
+            color: #000;
+        }
+        .footer {
+            display: flex;
+            align-items: center;
+            padding: 2vw;
+            border-top: 1px solid #ddd;
+            background: #fff;
+        }
+        .footer .material-icons { font-size: 6vw; margin: 0 2vw; color: #666; }
+        .footer input {
+            flex: 1;
+            padding: 2vw;
+            border-radius: 10vw;
+            border: 1px solid #ccc;
+            font-size: 4vw;
+            outline: none;
+        }
     </style>
 </head>
 <body>
-    <h1>메인 화면입니다!</h1>
+    <div class="chat-container">
+        <!-- Header -->
+        <div class="header">
+            <span class="material-icons">arrow_back</span>
+            <span class="title">Eau de Pico</span>
+            <span class="material-icons">videocam</span>
+        </div>
+        <!-- Chat Area -->
+        <div class="chat-area">
+            <div class="timestamp">7월 18일 (금) 03:18</div>
+            <div class="message sent">뭐해?? 진짜 오랜만이다</div>
+            <div class="timestamp">7월 18일 (금) 13:18</div>
+            <div class="message received">그러게 진짜 오랜만이네</div>
+            <div class="message received">나 그냥 폰하지!</div>
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+            <span class="material-icons">add</span>
+            <input type="text" placeholder="아 혹시 저번에 너네 집에서 &lt;노래&gt; 들렸을 때 났던 향 기억나?">
+            <span class="material-icons">mic</span>
+        </div>
+    </div>
 </body>
 </html>
