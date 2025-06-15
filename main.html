@@ -68,6 +68,10 @@
             color: white;
         }
 
+        .message.received {
+            justify-content: flex-start;
+        }
+
         .input-container {
             display: flex;
             align-items: center;
@@ -111,14 +115,19 @@
         </div>
 
         <div class="messages">
-            <div class="message">
+            <!-- 첫 번째 메시지 (상대방) -->
+            <div class="message received">
                 <span>그렇게 진짜 오랜만이네</span>
             </div>
+
+            <!-- 두 번째 메시지 (나) -->
             <div class="message user">
-                <span>나 그냥 폰 하지!</span>
+                <span>나 그냥 폰하지!</span>
             </div>
-            <div class="message">
-                <span>아 혹시 저번에 너네 집에서 <노래> 들었을 때 났던 향 기억나?</span>
+
+            <!-- 세 번째 메시지 (상대방) -->
+            <div class="message received">
+                <span>아 혹시 저번에 너네 집에서 <span style="color: #0084ff;">노래</span> 들었을 때 났던 향 기억나?</span>
             </div>
         </div>
 
@@ -135,7 +144,7 @@
             if (message) {
                 const messageContainer = document.querySelector('.messages');
                 const newMessage = document.createElement('div');
-                newMessage.classList.add('message');
+                newMessage.classList.add('message', 'user');
                 newMessage.innerHTML = `<span>${message}</span>`;
                 messageContainer.appendChild(newMessage);
                 input.value = '';
