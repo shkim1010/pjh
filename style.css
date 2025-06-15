@@ -1,5 +1,5 @@
 body {
-    ubackground-image: url('./images/IMG_1336.jpg');
+    background-image: url('./images/IMG_1336.jpg');
     margin: 0;
     display: flex; /* 컨테이너를 중앙 정렬하기 위해 유지 */
     justify-content: center; /* 가로 중앙 정렬 */
