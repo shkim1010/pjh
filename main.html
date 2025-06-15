@@ -3,170 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인 화면</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f0f0f0;
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 5vw;
-            color: #555;
-            margin: 0;
-        }
-
-        .chat-container {
-            width: 90%;
-            max-width: 600px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header .back-button, .header .camera-icon {
-            color: #7ec8f1;
-            font-size: 2.5rem;
-        }
-
-        .header .profile {
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .header .profile img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-bottom: 5px;
-        }
-
-        .header .profile p {
-            font-size: 1.5rem;
-            color: #555;
-        }
-
-        .message-area {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .message-area .message {
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .message-area .message .message-time {
-            font-size: 1.2rem;
-            color: #888;
-            text-align: center;
-            flex-grow: 1;
-            margin-bottom: 5px;
-        }
-
-        .message-area .message .bubble {
-            max-width: 70%;
-            padding: 10px;
-            border-radius: 20px;
-            font-size: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .message-area .message.sent {
-            justify-content: flex-end;
-        }
-
-        .message-area .message.sent .bubble {
-            background-color: #7ec8f1;
-            color: white;
-            border-radius: 20px 20px 0 20px;
-        }
-
-        .message-area .message.received .bubble {
-            background-color: #e0e0e0;
-            color: black;
-            border-radius: 20px 20px 20px 0;
-        }
-
-        .input-bar {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .input-bar .icon {
-            background-color: #e0e0e0;
-            border-radius: 50%;
-            padding: 10px;
-            margin-right: 10px;
-            font-size: 2rem;
-            color: #555;
-        }
-
-        .input-bar input {
-            flex-grow: 1;
-            border: none;
-            font-size: 1.5rem;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-radius: 30px;
-            color: #555;
-        }
-
-        .input-bar input:focus {
-            outline: none;
-        }
-    </style>
+    <title>KakaoTalk Clone</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="chat-container">
-        <!-- Header -->
-        <div class="header">
-            <div class="back-button">&lt;</div>
-            <div class="profile">
-                <img src="images/default_profile.png" alt="images/default_profile.png">
-                <p>Eau de Pico</p>
+    <div class="container">
+        <header class="header">
+            <div class="back-icon">
+                <i class="fas fa-chevron-left"></i>
             </div>
-            <div class="camera-icon">🎥</div>
+            <div class="profile-info">
+                <div class="profile-pic">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="username">Eau de Pico</div>
+            </div>
+            <div class="camera-icon">
+                <i class="fas fa-video"></i>
+            </div>
+        </header>
+
+        <div class="chat-area">
+            <div class="message-date-time center-aligned">7월 18일 (금) 03:18</div>
+
+            <div class="message-row right">
+                <div class="message-bubble blue">
+                    뭐해?? 진짜 오랜만이다
+                </div>
+            </div>
+
+            <div class="message-date-time center-aligned">7월 18일 (금) 13:18</div>
+
+            <div class="message-row left">
+                <div class="message-bubble gray">
+                    그러게 진짜 오랜만이네
+                </div>
+            </div>
+            <div class="message-row left">
+                <div class="message-bubble gray">
+                    나 그냥 폰하지!
+                </div>
+            </div>
         </div>
 
-        <!-- Message Area -->
-        <div class="message-area">
-            <div class="message received">
-                <div class="message-time">7월 18일 (금) 03:18</div>
-                <div class="bubble">뭐해? 진짜 오랜만이다</div>
+        <div class="bottom-bar">
+            <div class="plus-icon-container">
+                <i class="fas fa-plus"></i>
             </div>
-            <div class="message sent">
-                <div class="message-time">7월 18일 (금) 13:18</div>
-                <div class="bubble">그러게 진짜 오랜만이네</div>
+            <div class="input-bar">
+                아 혹시 저번에 너네 집에서 <span contenteditable="true" class="editable-text">노래</span> 들었을 때 났던 향 기억나?
             </div>
-            <div class="message sent">
-                <div class="bubble">나 그냥 폰하지!</div> <!-- 날짜와 시간 제거된 부분 -->
+            <div class="mic-icon-container">
+                <i class="fas fa-microphone"></i>
             </div>
-        </div>
-
-        <!-- Input Bar -->
-        <div class="input-bar">
-            <div class="icon">+</div>
-            <input type="text" placeholder="아 혹시 저번에 너네 집에서 <노래> 들었을 때 났던 향 기억나?">
-            <div class="icon">🎤</div>
         </div>
     </div>
 </body>
