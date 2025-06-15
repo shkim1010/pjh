@@ -11,9 +11,12 @@ body {
 }
 
 .container {
-    width: 100%;
-    max-width: 375px; /* 모바일 화면 비율 유지 (iPhone X/XS/11 Pro 기준) */
-    height: 100%; /* body의 100% 높이 차지 */
+    /* 이 부분이 가로 비율로 변경된 부분입니다. */
+    width: 100%; /* 너비를 100%로 설정하여 가로로 늘림 */
+    max-width: 812px; /* 이전에 height였던 812px를 max-width로 설정 */
+    height: 100%; /* 높이를 100%로 설정하여 세로로 늘림 */
+    max-height: 375px; /* 이전에 max-width였던 375px를 max-height로 설정 */
+    
     background-color: #fff; /* 컨테이너 배경도 흰색 */
     display: flex;
     flex-direction: column;
@@ -158,7 +161,6 @@ body {
     color: #8e8e93; /* 회색 선 아이콘 색상 */
     width: 30px; /* 아이콘을 위한 공간 */
     height: 30px; /* 아이콘을 위한 공간 */
-    /* 배경색 및 둥근 테두리는 사진과 맞지 않으므로 제거 */
 }
 
 .input-bar {
