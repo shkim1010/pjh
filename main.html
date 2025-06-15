@@ -1,4 +1,3 @@
-<!-- 저장 파일명: main.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,77 +15,146 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@800&display=swap" rel="stylesheet">
+
     <style>
-        /* index 화면과 동일한 컨테이너 전체 사이즈 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 5vw;
+            color: #555;
+        }
+
         .container {
             width: 100vw;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            height: 60px;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header .material-icons {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .header .title {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .chat-area {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f5f5f5;
+        }
+
+        .timestamp {
+            text-align: center;
+            margin: 8px 0;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 8px 12px;
+            border-radius: 16px;
+            line-height: 1.4;
+            margin: 6px 0;
+            word-wrap: break-word;
+        }
+
+        .message.sent {
+            margin-left: auto;
+            background: #0084ff;
+            color: #fff;
+        }
+
+        .message.received {
+            margin-right: auto;
+            background: #e5e5ea;
+            color: #000;
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-top: 1px solid #ddd;
+            background: #fff;
+        }
+
+        .footer .material-icons {
+            font-size: 28px;
+            color: #666;
+            margin: 0 8px;
+        }
+
+        .footer input {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .message-input-wrapper {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .message-input-wrapper span {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .message-input-wrapper input {
+            flex: 1;
+            padding: 6px 8px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            margin: 0 4px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 상단 이동/타이틀/비디오 아이콘 -->
         <div class="header">
             <span class="material-icons">arrow_back</span>
             <span class="title">Eau de Pico</span>
             <span class="material-icons">videocam</span>
         </div>
 
-        <!-- 날짜/시간 -->
-        <div class="date-time">
-            <div class="date">7월 18일 금요일</div>
-            <div class="time">13:18</div>
+        <div class="chat-area">
+            <div class="timestamp">7월 18일 (금) 03:18</div>
+            <div class="message sent">뭐해?? 진짜 오랜만이다</div>
+            <div class="timestamp">7월 18일 (금) 13:18</div>
+            <div class="message received">그러게 진짜 오랜만이네</div>
+            <div class="message received">나 그냥 폰하지!</div>
         </div>
 
-        <!-- 음악 플레이어 -->
-        <div class="music-player">
-            <div class="album-art-info">
-                <div class="album-art">
-                    <img src="images/IMG_0357.jpg" alt="앨범 아트"> 
-                </div>
-                <div class="song-info">
-                    <div class="song-title">흔들리는 꽃들 속에서 네 샴푸향이 느껴진거야</div>
-                    <div class="artist">장범준</div>
-                </div>
-            </div>
-            <div class="progress-section">
-                <span class="current-time">00:42</span>
-                <div class="progress-bar-container">
-                    <div class="progress-bar"></div>
-                </div>
-                <span class="total-time">2:19</span>
-            </div>
-            <div class="controls">
-                <i class="fas fa-backward fa-lg"></i>
-                <i class="fas fa-pause fa-2x"></i>
-                <i class="fas fa-forward fa-lg"></i>
-            </div>
-            <div class="volume-bar-container">
-                <i class="fas fa-volume-down"></i>
-                <div class="volume-bar"></div>
-                <i class="fas fa-volume-up"></i>
-            </div>
-        </div>
-
-        <!-- 알림 영역 -->
-        <div class="message-notification">
-            <div class="message-content">
-                <div class="message-icon-image">
-                    <img src="images/message.jpg" alt="메시지 아이콘">
-                </div>
-                <div class="main-text-area">
-                    <div class="message-top-line">
-                        <div class="message-label">메시지</div>
-                        <div class="message-time">지금</div>
-                    </div>
-                    <div class="phone-number">010-4XXX-7XX2</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 하단 입력창 -->
         <div class="footer">
             <span class="material-icons">add</span>
             <div class="message-input-wrapper">
@@ -97,6 +165,7 @@
             <span class="material-icons">mic</span>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
